@@ -4,18 +4,20 @@ import { Col, Row, Container } from "../components/Grid";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Input, TextArea, FormBtn } from "../components/Form";
+import Card from 'react-bootstrap/Card'
 
 
 
 function Search(props) {
-  const [books, setBooks] = useState({})
+  const [books, setBooks] = useState([])
   const [title, setTitle] = useState("")
 
 
   // When this component mounts, grab the book with the _id of props.match.params.id
   // e.g. localhost:3000/books/599dcb67f0f16317844583fc
-const searchforBook = () => {
-  API.getBook(title)
+const searchforBook = (e) => {
+  e.preventDefault();
+  API.getgoogleBooks(title)
       .then(res => {
         console.log(res.data);
         setBooks(res.data)
@@ -29,18 +31,16 @@ function handleInputChange(event) {
   setTitle(value)
 };
   
-// function handleFormSubmit(event) {
-//   event.preventDefault();
-//   if (formObject.title && formObject.author) {
-//     API.saveBook({
-//       title: formObject.title,
-//       author: formObject.author,
-//       synopsis: formObject.synopsis
-//     })
-//       .then(res => loadBooks())
-//       .catch(err => console.log(err));
-//   }
-// };
+function saveBook(title,author,description) {
+    API.saveBook({
+      title: title,
+      author: author,
+      synopsis: description
+    })
+      .then(() => console.log("saved Book!")) 
+      .catch(err => console.log(err));
+};
+ 
   return (
       <Container fluid>
         <Row>
@@ -64,13 +64,25 @@ function handleInputChange(event) {
           </Col>
         </Row>
         <Row>
-          <Col size="md-10 md-offset-1">
+          <Col size="md-10 md-offset-1" style={{display:"flex", flexWrap: "wrap"}}>
             {/* map books from google */}
+            {books.map((book) =>(
+              <Card style={{ width: '18rem' }}>
+              <Card.Body>
+            <Card.Title>{book.volumeInfo.title}</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">{book.volumeInfo.authors.join(",")}</Card.Subtitle>
+                <Card.Text>
+                  {book.volumeInfo.description}
+                </Card.Text>
+                <Card.Link onClick={()=>saveBook(book.volumeInfo.title, book.volumeInfo.authors.join(", "), book.volumeInfo.description)} href="#">Save Book</Card.Link>
+              </Card.Body>
+            </Card>
+            ))}
           </Col>
         </Row>
         <Row>
           <Col size="md-2">
-            <Link to="/">← Back to Authors</Link>
+            <Link to="/books">← Saved Books</Link>
           </Col>
         </Row>
       </Container>

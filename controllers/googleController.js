@@ -5,6 +5,7 @@ module.exports = {
  findbytitle: function(req, res) {
      console.log(req.params.title);
     axios.get ("https://www.googleapis.com/books/v1/volumes?q="+req.params.title)
+    // use api call in front end
       
       .then(googleResponse => {
           res.json(googleResponse.data.items)
