@@ -35,7 +35,7 @@ function saveBook(title,author,description) {
     API.saveBook({
       title: title,
       author: author,
-      synopsis: description
+      description: description
     })
       .then(() => console.log("saved Book!")) 
       .catch(err => console.log(err));
