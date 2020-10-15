@@ -7,7 +7,7 @@ function Nav() {
       <a className="navbar-brand" href="/">
         Google Books Search
       </a>
-      <Link to="/books">← Saved Books</Link>
+      <Link to="/books" style={{color: 'white'}}>← Saved Books</Link>
     </nav>
   );
 }
