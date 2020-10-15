@@ -72,7 +72,7 @@ function Books() {
                     <DeleteBtn onClick={() => deleteBook(book._id)} />
                     <Card.Img src={book.image}></Card.Img>
                     <Card.Title>{book.title}</Card.Title>
-                    <Card.Subtitle className="mb-2 text-muted">{book.authors}</Card.Subtitle>
+                    <Card.Subtitle >{book.author}</Card.Subtitle>
                     <Card.Text>
                       {book.description}
                     </Card.Text>
