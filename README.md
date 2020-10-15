@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 React-based Google Books Search app.
 
-You can access Here! [Google Books Library](https://https://googlelib.herokuapp.com/books)
+You can access Here! [Google Books Library](https://googlelib.herokuapp.com/books)
 ![homepage](/assets/homepage.png)
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
