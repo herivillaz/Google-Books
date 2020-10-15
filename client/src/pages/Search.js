@@ -31,11 +31,19 @@ function handleInputChange(event) {
   setTitle(value)
 };
   
-function saveBook(title,author,description) {
+function saveBook(title, author, description, link, image) {
     API.saveBook({
       title: title,
       author: author,
-      description: description
+      description: description,
+      link: link,
+      image: image
+  //     title: { type: String, required: true },
+  //  subtitle: { type: String },
+  //  authors: { type: [String], required: true },
+  //  link: { type: String, required: true },
+  //  description: { type: String, required: true },
+  //  image: { typ
     })
       .then(() => console.log("saved Book!")) 
       .catch(err => console.log(err));
@@ -71,12 +79,13 @@ function saveBook(title,author,description) {
               <Card.Body>
                 <Card.Img src={book.volumeInfo.imageLinks.thumbnail}></Card.Img>
             <Card.Title>{book.volumeInfo.title}</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">{book.volumeInfo.authors.join(",")}</Card.Subtitle>
+                <Card.Subtitle className="mb-2 text-muted">{book.volumeInfo.authors?.join(",")}</Card.Subtitle>
                 <Card.Text>
                   {book.volumeInfo.description}
                 </Card.Text>
                 <Card.Link href={book.volumeInfo.infoLink} target="_blank">More info</Card.Link>
-                <Card.Link onClick={()=>saveBook(book.volumeInfo.title, book.volumeInfo.authors.join(", "), book.volumeInfo.description)} href="#">Save Book</Card.Link>
+                <Card.Link onClick={()=>saveBook(book.volumeInfo.title, book.volumeInfo.authors.join(", "), book.volumeInfo.description, book.volumeInfo.infoLink, book.volumeInfo.imageLinks.thumbnail
+)} href="#">Save Book</Card.Link>
               </Card.Body>
             </Card>
             ))}
