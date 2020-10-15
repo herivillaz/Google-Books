@@ -66,7 +66,7 @@ function Books() {
                   <ListItem key={book._id}>
                     <Link to={"/books/" + book._id}>
                       <strong>
-                        {book.title} by {book.author} {book.thumbnail}
+                        {book.title} by {book.author} 
                       </strong>
                     </Link>
                     <DeleteBtn onClick={() => deleteBook(book._id)} />
