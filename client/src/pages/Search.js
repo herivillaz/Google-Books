@@ -64,16 +64,18 @@ function saveBook(title,author,description) {
           </Col>
         </Row>
         <Row>
-          <Col size="md-10 md-offset-1" style={{display:"flex", flexWrap: "wrap"}}>
+          <Col size="md-12 md-offset-1" style={{display:"flex", flexWrap: "wrap"}}>
             {/* map books from google */}
             {books.map((book) =>(
-              <Card style={{ width: '18rem' }}>
+              <Card style={{ width: '18rem', marginRight: 'auto'}}>
               <Card.Body>
+                <Card.Img src={book.volumeInfo.imageLinks.thumbnail}></Card.Img>
             <Card.Title>{book.volumeInfo.title}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">{book.volumeInfo.authors.join(",")}</Card.Subtitle>
                 <Card.Text>
                   {book.volumeInfo.description}
                 </Card.Text>
+                <Card.Link href={book.volumeInfo.infoLink} target="_blank">More info</Card.Link>
                 <Card.Link onClick={()=>saveBook(book.volumeInfo.title, book.volumeInfo.authors.join(", "), book.volumeInfo.description)} href="#">Save Book</Card.Link>
               </Card.Body>
             </Card>
